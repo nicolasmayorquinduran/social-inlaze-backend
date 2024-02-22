@@ -1,17 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 import { Post } from './post.entity';
+import { CommonFields } from './commonfields';
+import { Feed } from './feed.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends CommonFields {
   @Column()
   name: string;
 
   @Column()
   email: string;
 
-  @OneToMany(() => Post, (post) => post.user)
-  posts: Post[];
+  @OneToOne(() => Feed)
+  @JoinColumn()
+  feed: Feed;
 }

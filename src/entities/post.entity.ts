@@ -1,17 +1,19 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
 import { User } from './user.entity';
-
+import { Interaction } from './interaction.entity';
+import { CommonFields } from './commonfields';
+import { Feed } from './feed.entity';
 @Entity()
-export class Post {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Post extends CommonFields {
   @Column()
   title: string;
 
   @Column()
   content: string;
 
-  @ManyToOne(() => User, (user) => user.posts)
-  user: User;
+  @ManyToOne(() => Feed, (feed) => feed.posts)
+  feed: Feed;
+
+  @OneToMany(() => Post, (post) => post.interactions)
+  interactions: Interaction[];
 }
