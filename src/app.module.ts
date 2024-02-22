@@ -5,6 +5,7 @@ import { PostModule } from './modules/post/post.module';
 import { InteractionModule } from './modules/interaction/interaction.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PassportModule } from '@nestjs/passport';
+import { FeedModule } from './modules/feed/feed.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PassportModule } from '@nestjs/passport';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    FeedModule,
   ],
   controllers: [],
   providers: [],
