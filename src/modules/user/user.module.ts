@@ -9,5 +9,6 @@ import { Feed } from '@entities/feed.entity';
   imports: [TypeOrmModule.forFeature([User, Feed])],
   controllers: [UserController],
   providers: [UserService],
+  exports: [UserService],
 })
 export class UserModule {}
