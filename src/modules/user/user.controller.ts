@@ -22,6 +22,12 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('user/:id')
+  async getUser(@Param('id') id: number) {
+    return await this.userService.findById(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Put('user/:id')
   async updateUser(@Param('id') id: number, @Body() user: Partial<User>) {
     return await this.userService.update(id, user);

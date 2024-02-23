@@ -1,14 +1,23 @@
-import { Entity, Column, OneToOne, JoinColumn, Unique } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToOne,
+  JoinColumn,
+  Unique,
+  OneToMany,
+} from 'typeorm';
 import { Post } from './post.entity';
 import { CommonFields } from './commonfields';
-import { Feed } from './feed.entity';
 import { IsEmail, IsNotEmpty, Matches, MinLength } from 'class-validator';
 
 @Entity()
 export class User extends CommonFields {
   @Column()
   @IsNotEmpty({ message: 'El nombre es requerido' })
-  name: string;
+  FullName: string;
+
+  @Column()
+  age: number;
 
   @Unique(['email'])
   @Column()
@@ -17,10 +26,9 @@ export class User extends CommonFields {
   email: string;
 
   @Column()
-  @IsNotEmpty({ message: 'El nombre es requerido' })
+  @IsNotEmpty({ message: 'La clave es requerida' })
   password: string;
 
-  @OneToOne(() => Feed)
-  @JoinColumn()
-  feed: Feed;
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 }
