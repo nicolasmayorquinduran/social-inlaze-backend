@@ -17,7 +17,7 @@ import { PassportModule } from '@nestjs/passport';
       port: 5432,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      database: 'inlaze-social',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
