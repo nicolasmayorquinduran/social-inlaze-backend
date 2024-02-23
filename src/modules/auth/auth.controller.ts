@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, UseGuards, Body } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { creadentialsInterface } from '@models/interfaces/services';
@@ -11,12 +11,12 @@ export class AuthController {
     private userService: UserService,
   ) {}
   @Post('login')
-  async login(@Request() req: creadentialsInterface) {
-    return this.authService.validateCredentials(req);
+  async login(@Body() body: creadentialsInterface) {
+    return this.authService.validateCredentials(body);
   }
 
   @Post('register')
-  async register(@Request() req: User) {
-    return this.userService.create(req);
+  async register(@Body() body: User) {
+    return this.userService.create(body);
   }
 }

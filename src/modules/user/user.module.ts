@@ -4,9 +4,8 @@ import { UserService } from './user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '@entities/user.entity';
 import { PassportModule } from '@nestjs/passport';
-import { Feed } from '@entities/feed.entity';
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Feed])],
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
   providers: [UserService],
   exports: [UserService],
